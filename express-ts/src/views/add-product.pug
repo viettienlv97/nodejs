@@ -1,0 +1,6 @@
+extends layouts/main-layout.pug
+
+block content
+  form(action="/admin/add-product", method="post")
+    input#product-input(type="text", name="product", placeholder="Product name")
+    button(type="submit") Submit

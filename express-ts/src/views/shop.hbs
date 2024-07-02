@@ -1,0 +1,32 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>{{docTitle}}</title>
+    <link rel='stylesheet' href='/css/main.css' />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href='/'>Shop</a></li>
+          <li><a href='/admin/add-product'>Add Product</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      {{#if hasProduct}}
+        <h1>My Products</h1>
+        <p>List of all the products...</p>
+        {{#each prods}}
+          <article>
+            {{this}}
+          </article>
+        {{/each}}
+      {{else}}
+        <h1>No Products</h1>
+      {{/if}}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+extends layouts/main-layout.pug
+
+block content 
+  if products.length > 0
+    h1 Products List
+    each product in products
+      article #{product.name}

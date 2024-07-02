@@ -1,0 +1,10 @@
+extends ./layouts/main-layout.pug
+
+block styles
+  link(rel="stylesheet", href="/css/main.css")
+
+block content
+  h2 Add product
+  form(action="/admin/add-product", method="post")
+    input(type="text", placeholder="Add product", name="product")
+    button(type="submit") Add product
