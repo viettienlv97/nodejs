@@ -1,1 +1,16 @@
-[{"title":"A Book","imageUrl":"https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg","description":"This is an awesome book!","price":"19"},{"title":"A Cat","description":"A cute cat","imageUrl":"https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg","price":"200"}]
+[
+  {
+    "id": "3db44b3d-8717-4b4c-9176-b03af3c94ef9",
+    "title": "A Book",
+    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
+    "description": "This is an awesome book!",
+    "price": "19"
+  },
+  {
+    "id": "ffe6d2d4-e9e2-47e4-ae4f-48d66cacd812",
+    "title": "A Cat",
+    "description": "A cute cat",
+    "imageUrl": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg",
+    "price": "200"
+  }
+]
