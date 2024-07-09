@@ -1,0 +1,17 @@
+@mixin text-colors($colors) {
+  @each $colorName, $color-value in $colors {
+    .text-#{$colorName} {
+      color: $color-value !important;
+    }
+  }
+}
+
+$colors: (
+  "red": $red,
+  "purple": $purple,
+  "green": $green,
+  'gray': $gray-600,
+  'dark': $gray-700
+);
+
+@include text-colors($colors);
