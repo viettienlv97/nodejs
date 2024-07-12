@@ -2,7 +2,6 @@ import Cart from '../model/shop/Cart.js'
 import Product from '../model/shop/Product.js'
 import { responseSuccess, responseFail } from '../utils/response.js'
 import { v4 as uuid } from 'uuid'
-import products from './products.js'
 
 export const postAddToCart = async (req, res) => {
   const { productId } = req.body
