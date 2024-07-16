@@ -3,9 +3,8 @@ import { MongoClient } from 'mongodb'
 let _db
 
 export const mongoConnect = (callback) => {
-  MongoClient.connect(
-    'mongodb+srv://viettienvu97:viettien@all-database.ou6hp0h.mongodb.net/?retryWrites=true&w=majority&appName=all-database'
-  )
+  console.log(process.env)
+  MongoClient.connect(process.env.MONGO_DB)
     .then((result) => {
       console.log('Connected', result)
       _db = result.db('shop')
