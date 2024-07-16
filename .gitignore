@@ -4,3 +4,4 @@
 # /lab/*/*/node_modules
 node_modules/
 *.rar
+.env
