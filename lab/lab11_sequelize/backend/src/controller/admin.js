@@ -4,6 +4,7 @@ import { responseSuccess, responseFail } from '../utils/response.js'
 const getEditProduct = (req, res) => {
   const { isEdit } = req.query
   const { productId } = req.params
+
   if (!isEdit || !productId) responseFail(res, 404, 'Not allow')
   else {
     Product.findByPk(productId)

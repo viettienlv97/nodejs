@@ -35,7 +35,7 @@ export const postAddToCart = async (req, res) => {
 }
 export const getCart = async (_, res) => {
   const cart = await Cart.findOne()
-  let products = await cart.getProducts()
+  const products = await cart.getProducts()
 
   return responseSuccess(res, { products, total: 0 })
 }
