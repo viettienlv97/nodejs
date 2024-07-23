@@ -7,7 +7,8 @@ const userSchema = new Schema({
   fullName: String,
   phoneNumber: String,
   email: String,
-  isAdmin: Boolean
+  isAdmin: Boolean,
+  idCard: String
 })
 
 const User = model('User', userSchema)

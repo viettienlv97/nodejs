@@ -1,9 +1,15 @@
 import { Schema, model } from 'mongoose'
 
 const transSchema = new Schema({
-  user: {
+  creater: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  info: {
+    fullName: String,
+    email: String,
+    phoneNumber: String,
+    idCard: String
   },
   hotel: {
     type: Schema.ObjectId,
@@ -11,13 +17,17 @@ const transSchema = new Schema({
   },
   rooms: [
     {
-      type: Schema.ObjectId,
-      ref: 'Room'
+      roomId: {
+        type: Schema.ObjectId,
+        ref: 'Room'
+      },
+      price: Number,
+      roomNumbers: [Number]
     }
   ],
-  dateStart: String,
-  dateEnd: String,
-  price: String,
+  startDate: Date,
+  endDate: Date,
+  price: Number,
   payment: String,
   status: String
 })

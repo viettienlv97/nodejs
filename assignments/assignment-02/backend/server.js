@@ -6,9 +6,15 @@ import mongoose from 'mongoose'
 //router
 import userRoute from './router/user.route.js'
 import hotelRoute from './router/hotel.route.js'
+import paymentRoute from './router/payment.route.js'
+import transactionRoute from './router/transaction.route.js'
+import roomRouter from './router/room.route.js'
+
+// model
 import Room from './model/Room.js'
 import Hotel from './model/Hotel.js'
 import User from './model/User.js'
+import PaymentMethod from './model/PaymentMethod.js'
 
 dotenv.config()
 const app = express()
@@ -24,6 +30,9 @@ app.use((error, req, res, next) => {
 
 app.use('/api/auth', userRoute)
 app.use('/api/hotel', hotelRoute)
+app.use('/api/payment', paymentRoute)
+app.use('/api/transaction', transactionRoute)
+app.use('/api/room', roomRouter)
 
 app.use((_, res, next) => {
   res.status(404).send('Page not found')
