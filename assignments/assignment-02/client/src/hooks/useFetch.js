@@ -21,10 +21,12 @@ const useFetch = (method) => {
         .then((res) => {
           console.log(res)
           if (!res.success) setError(res.message)
-          // setTimeout(() => {
-          else setData(res?.data)
-          setError(null)
-          // }, 1000)
+          else {
+            // setTimeout(() => {
+            setData(res?.data)
+            setError(null)
+            // }, 1000)
+          }
         })
     } catch (error) {
       console.log(error)

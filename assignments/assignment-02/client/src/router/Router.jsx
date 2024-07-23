@@ -7,7 +7,7 @@ import LoginPage from '../pages/auth/Login.jsx'
 import RegisterPage from '../pages/auth/Register.jsx'
 import TransactionsPage from '../pages/transactions/Transactions.jsx'
 import DetailPage from '../pages/detail/Detail.jsx'
-import BookPage from '../pages/book/Book.jsx'
+import BookingPage from '../pages/book/Booking.jsx'
 
 const router = createBrowserRouter([
   {
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'book/:hotelId',
-            element: <BookPage />
+            element: <BookingPage />
           }
         ]
       },

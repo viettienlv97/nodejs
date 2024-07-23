@@ -7,10 +7,11 @@
 }
 
 $colors: (
-  "purple": $purple,
-  "green": $green,
+  'purple': $purple,
+  'green': $green,
   'gray': $gray-600,
-  'dark': $gray-700
+  'dark': $gray-700,
+  'fade': $fade
 );
 
 @include text-colors($colors);
