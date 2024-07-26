@@ -27,6 +27,7 @@ const transSchema = new Schema({
   ],
   startDate: Date,
   endDate: Date,
+  createdAt: Date,
   price: Number,
   payment: String,
   status: String

@@ -1,6 +1,16 @@
 import Transaction from '../model/Transaction.js'
+import Room from '../model/Room.js'
 import { responseSuccess, responseFail } from '../utils/response.js'
 import { Types } from 'mongoose'
+
+const getAllRooms = (req, res) => {
+  Room.find()
+    .then((rooms) => responseSuccess(res, rooms))
+    .catch((err) => {
+      console.log('getAllRooms', err)
+      responseFail(res, 404, 'Error')
+    })
+}
 
 const getAvailableRoomsByDate = (req, res) => {
   const { hotelId, startDate, endDate } = req.body
@@ -38,4 +48,4 @@ const getAvailableRoomsByDate = (req, res) => {
     })
 }
 
-export default { getAvailableRoomsByDate }
+export default { getAvailableRoomsByDate, getAllRooms }
