@@ -3,6 +3,7 @@ import { API_URL, HTTP_METHOD } from '../../contants.js'
 import useFetch from '../../hooks/useFetch.js'
 import ContentWrapper from '../../layouts/ContentWrapper.jsx'
 import { useNavigate } from 'react-router-dom'
+import { mapRoomData } from '../../utils/helpers.js'
 
 const NewRoom = () => {
   const navigate = useNavigate()
@@ -21,13 +22,13 @@ const NewRoom = () => {
     e.preventDefault()
     const fd = new FormData(e.target)
     const data = Object.fromEntries(fd.entries())
-    data.roomNumbers = data.rooms
-      .split(',')
-      .map((number) => (number ? number.trim() : undefined))
-      .filter((n) => n)
-    data.price = +data.price
-    data.maxPeople = +data.maxPeople
-    console.log(data)
+    mapRoomData(data)
+    // data.roomNumbers = data.rooms
+    //   .split(',')
+    //   .map((number) => (number ? number.trim() : undefined))
+    //   .filter((n) => n)
+    // data.price = +data.price
+    // data.maxPeople = +data.maxPeople
     addNewRoom(`${API_URL}/admin/rooms/add`, data)
   }
   return (

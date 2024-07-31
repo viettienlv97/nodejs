@@ -1,7 +1,11 @@
-import React from 'react'
+import EditHotel from '../../components/hotel/EditHotel.jsx'
 
 const DetailHotelPage = () => {
-  return <div>DetailHotelPage</div>
+  return (
+    <div>
+      <EditHotel />
+    </div>
+  )
 }
 
 export default DetailHotelPage

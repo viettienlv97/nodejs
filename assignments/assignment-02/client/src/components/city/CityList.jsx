@@ -1,17 +1,18 @@
 import { useEffect } from 'react'
-// import city from '../../../data/city.json'
 import { HTTP_METHOD, CITIES } from '../../contants.js'
 import useFetch from '../../hooks/useFetch.js'
 const API_URL = import.meta.env.VITE_API_URL
 
 const CityList = () => {
-  // const cityList = [...city]
+  //hooks
   const { fetchData, data, loading } = useFetch(HTTP_METHOD.GET)
 
+  //useEffect
   useEffect(() => {
     if (!data) fetchData(`${API_URL}/hotel/cities`)
   }, [])
 
+  //map data
   const cities = data
     ? CITIES.map((c) => {
         return {
@@ -21,6 +22,7 @@ const CityList = () => {
       })
     : []
 
+  //render
   return (
     <section id='city-list'>
       <div className='container mb-4 position-relative'>

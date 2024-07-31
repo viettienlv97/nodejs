@@ -10,11 +10,11 @@ const postAddHotel = (req, res) => {
     address,
     distance,
     title,
-    description,
-    price,
+    desc,
+    cheapestPrice,
     photos,
     rooms,
-    feature
+    featured
   } = req.body
 
   const hotel = new Hotel({
@@ -24,12 +24,12 @@ const postAddHotel = (req, res) => {
     city,
     address,
     distance,
-    desc: description,
-    cheapestPrice: price,
+    desc,
+    cheapestPrice,
     photos,
     rooms,
-    featured: feature,
-    rating: 4
+    featured,
+    rating: 5
   })
   hotel
     .save()
@@ -40,6 +40,47 @@ const postAddHotel = (req, res) => {
     })
 }
 
+const postUpdateHotel = (req, res) => {
+  const { hotelId } = req.params
+  const {
+    name,
+    type,
+    city,
+    address,
+    distance,
+    title,
+    desc,
+    cheapestPrice,
+    photos,
+    rooms,
+    featured
+  } = req.body
+
+  Hotel.updateOne(
+    { _id: hotelId },
+    {
+      $set: {
+        name,
+        title,
+        type,
+        city,
+        address,
+        distance,
+        desc,
+        cheapestPrice,
+        photos,
+        rooms,
+        featured
+      }
+    }
+  )
+    .then((result) => {
+      console.log(result)
+      responseSuccess(res, result)
+    })
+    .catch((err) => responseFail(res, 404, err.message))
+}
+
 const getHotels = (req, res) => {
   Hotel.find()
     .then((hotels) => responseSuccess(res, hotels))
@@ -47,6 +88,20 @@ const getHotels = (req, res) => {
       console.log('getHotels', err)
       responseFail(res, 404, 'Cannot get Hotels')
     })
+}
+
+const getDetail = (req, res) => {
+  const { hotelId } = req.params
+  if (!hotelId) return responseFail(res, 400, 'Missing hotelId param')
+
+  Hotel.findById(hotelId)
+    .populate('rooms')
+    .then((hotel) =>
+      hotel
+        ? responseSuccess(res, hotel)
+        : responseFail(res, 404, 'Not found hotel')
+    )
+    .catch((err) => responseFail(res, 500, err.message))
 }
 
 const deleteById = (req, res) => {
@@ -70,4 +125,10 @@ const deleteById = (req, res) => {
     })
 }
 
-export default { deleteById, getHotels, postAddHotel }
+export default {
+  deleteById,
+  getHotels,
+  postAddHotel,
+  getDetail,
+  postUpdateHotel
+}

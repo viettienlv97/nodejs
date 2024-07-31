@@ -1,7 +1,7 @@
-import React from 'react'
+import EditRoom from '../../components/room/EditRoom.jsx'
 
 const DetailRoomPage = () => {
-  return <div>DetailRoomPage</div>
+  return <EditRoom />
 }
 
 export default DetailRoomPage

@@ -8,17 +8,21 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const TransactionTable = () => {
+  //hooks
   const authUser = useSelector((state) => state.auth)
   const navigate = useNavigate()
-  const { fetchData, data, loading, error } = useFetch(HTTP_METHOD.GET)
+  const { fetchData, data, loading } = useFetch(HTTP_METHOD.GET)
 
+  //useEffect
   useEffect(() => {
     if (authUser) fetchData(`${API_URL}/transaction/${authUser._id}`)
     else navigate('/login')
   }, [])
 
+  //map data
   const transactions = data
 
+  //render
   return (
     <table className='table table-striped table-bordered border-secondary'>
       <thead>

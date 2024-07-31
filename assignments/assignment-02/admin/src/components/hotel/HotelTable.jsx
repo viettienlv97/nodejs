@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { HTTP_METHOD, API_URL } from '../../contants.js'
 import useFetch from '../../hooks/useFetch.js'
 import { CustomTd, CustomTh } from '../UI/Table.jsx'
+import { useNavigate } from 'react-router-dom'
 
 const HotelTable = () => {
+  const navigate = useNavigate()
   const {
     fetchData: getHotelsList,
     data: hotels,
@@ -25,8 +27,11 @@ const HotelTable = () => {
     }
   }, [resultDelete, errorDelete])
 
+  const handleEditHotel = (hotelId) => {
+    navigate('/hotels/' + hotelId)
+  }
+
   const handleDeleteHotel = (hotelId) => {
-    console.log('delete', hotelId)
     const process = confirm('Delete this hotel?')
     if (!process) return
 
@@ -67,9 +72,17 @@ const HotelTable = () => {
                   <CustomTd>{hotel.title}</CustomTd>
                   <CustomTd>{hotel.city}</CustomTd>
                   <CustomTd>
-                    <DeleteButton
-                      handleDeleteHotel={handleDeleteHotel}
+                    <Button
+                      className='bg-warning-subtle border-warning text-warning me-2'
+                      handleClick={handleEditHotel}
                       hotelId={hotel._id}
+                      title={'Edit'}
+                    />
+                    <Button
+                      className={'bg-danger-subtle border-danger text-danger'}
+                      handleClick={handleDeleteHotel}
+                      hotelId={hotel._id}
+                      title={'Delete'}
                     />
                   </CustomTd>
                 </tr>
@@ -81,13 +94,13 @@ const HotelTable = () => {
   )
 }
 
-const DeleteButton = ({ hotelId, handleDeleteHotel }) => {
+const Button = ({ hotelId, handleClick, className, title }) => {
   return (
     <button
-      onClick={() => handleDeleteHotel(hotelId)}
-      className='btn bg-danger-subtle border border-danger text-danger'
+      onClick={() => handleClick(hotelId)}
+      className={`${className} btn border`}
     >
-      Delete
+      {title}
     </button>
   )
 }

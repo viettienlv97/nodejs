@@ -13,3 +13,26 @@ export const countDate = ({ startDate, endDate }) => {
 
   return count
 }
+
+export const mapHotelData = (data, rooms) => {
+  const photos = data.images
+    .split(',')
+    .map((photo) => (photo ? photo.trim() : undefined))
+    .filter((p) => p)
+  data.photos = photos
+  data.rooms = rooms.map((room) => room.value)
+  data.featured = data.feature === 'true' ? true : false
+  data.distance = +data.distance
+  data.cheapestPrice = +data.price
+  data.desc = data.description
+}
+
+export const mapRoomData = (data) => {
+  data.roomNumbers = data.rooms
+    .split(',')
+    .map((number) => (number ? number.trim() : undefined))
+    .filter((n) => n)
+  data.price = +data.price
+  data.maxPeople = +data.maxPeople
+  data.desc = data.description
+}

@@ -1,10 +1,12 @@
-import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 import Search from './Search'
 import { useSelector } from 'react-redux'
 
 const Header = () => {
+  //hooks
   const authUser = useSelector((state) => state.auth)
+
+  //render
   return (
     <header className='bg-secondary position-relative pt-3 mb-5'>
       <div className='container text-light pb-10'>

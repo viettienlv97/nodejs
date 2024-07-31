@@ -9,15 +9,9 @@ const RegisterForm = () => {
   const [isRegister, setIsRegister] = useState(false)
   const { fetchData, data, loading, error } = useFetch(HTTP_METHOD.POST)
   const navigate = useNavigate()
-  useEffect(() => {
-    if (error) {
-      console.log(error)
-    }
-  }, [error])
 
   useEffect(() => {
     if (data && !isRegister) {
-      console.log('have data')
       setIsRegister(true)
     }
 
@@ -39,8 +33,6 @@ const RegisterForm = () => {
     const { user } = Object.fromEntries(fd.entries())
     if (!user) return
 
-    console.log('register')
-
     fetchData(`${API_URL}/auth/register`, { user })
   }
   const handleCreateAccount = (e) => {
@@ -49,9 +41,6 @@ const RegisterForm = () => {
       Object.fromEntries(fd.entries())
     if (!user || !username || !fullName || !password || !phoneNumber) return
 
-    console.log(user, username, fullName, password, phoneNumber)
-
-    console.log('create account')
     fetchData(`${API_URL}/auth/create`, {
       user,
       username,

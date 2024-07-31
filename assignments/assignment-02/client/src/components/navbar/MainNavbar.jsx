@@ -4,10 +4,12 @@ import { authActions } from '../../store/auth.js'
 import { removeItem } from '../../utils/storage.js'
 
 const MainNavbar = () => {
+  //hooks
   const authUser = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  //methods
   const handleLogout = () => {
     const process = confirm('Logout?')
     if (!process) return
@@ -16,6 +18,8 @@ const MainNavbar = () => {
     dispatch(authActions.clearAuth())
     navigate('/')
   }
+
+  //render
   return (
     <nav className='bg-secondary'>
       <div className='container text-light pt-3 pb-4'>

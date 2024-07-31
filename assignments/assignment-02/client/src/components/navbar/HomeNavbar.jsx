@@ -3,6 +3,7 @@ import navbar from '../../../data/navBar.json'
 
 const HomeNavbar = () => {
   const navList = [...navbar]
+
   return (
     <nav className='bg-secondary'>
       <div className='container text-light pt-2 pb-4'>

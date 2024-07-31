@@ -4,6 +4,7 @@ import useFetch from '../../hooks/useFetch.js'
 import ContentWrapper from '../../layouts/ContentWrapper.jsx'
 import { MultiSelect } from 'react-multi-select-component'
 import { useNavigate } from 'react-router-dom'
+import { mapHotelData } from '../../utils/helpers.js'
 
 const NewHotel = () => {
   const navigate = useNavigate()
@@ -12,7 +13,6 @@ const NewHotel = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data)
       navigate('/hotels')
     }
   }, [data])
@@ -22,17 +22,7 @@ const NewHotel = () => {
     const fd = new FormData(e.target)
     const data = Object.fromEntries(fd.entries())
     if (!rooms.length) return alert('Please select rooms')
-
-    const photos = data.images
-      .split(',')
-      .map((photo) => (photo ? photo.trim() : undefined))
-      .filter((p) => p)
-    data.photos = photos
-    data.rooms = rooms.map((room) => room.value)
-    data.feature = data.feature === 'true' ? true : false
-    data.distance = +data.distance
-    data.price = +data.price
-    console.log(data)
+    mapHotelData(data, rooms)
     fetchData(`${API_URL}/admin/hotels/add`, data)
   }
   return (

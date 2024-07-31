@@ -1,16 +1,18 @@
 import { useEffect } from 'react'
-import list from '../../../data/type.json'
 import { TYPES, HTTP_METHOD } from '../../contants.js'
 import useFetch from '../../hooks/useFetch.js'
 const API_URL = import.meta.env.VITE_API_URL
 
 const TypeList = () => {
-  const typeList = [...list]
+  //hooks
   const { fetchData, data, loading } = useFetch(HTTP_METHOD.GET)
 
+  //useEffect
   useEffect(() => {
     if (!data) fetchData(`${API_URL}/hotel/types`)
   }, [])
+
+  //map data
   const types = data
     ? TYPES.map((type) => {
         return {
@@ -20,6 +22,7 @@ const TypeList = () => {
       })
     : []
 
+  //render
   return (
     <section id='type-list'>
       <div className='container mb-5'>

@@ -1,21 +1,22 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-// import list from '../../../data/hotel_list.json'
 import { HTTP_METHOD } from '../../contants.js'
 import useFetch from '../../hooks/useFetch.js'
 const API_URL = import.meta.env.VITE_API_URL
 
 const HotelList = () => {
-  // const hotelList = [...list]
-
+  //hooks
   const { fetchData, data, loading } = useFetch(HTTP_METHOD.GET)
 
+  //useEffect
   useEffect(() => {
     if (!data) fetchData(`${API_URL}/hotel/featured`)
   }, [])
 
+  //map data
   const featured = data ? data : []
 
+  //render
   return (
     <section id='hotel-list'>
       <div className='container mb-5'>
@@ -53,12 +54,6 @@ const HotelList = () => {
                     <div className='fw-bold'>
                       Starting from ${hotel.cheapestPrice}
                     </div>
-                    {/* <div>
-                      <span className='bg-secondary text-light me-2 px-1 fs-7'>
-                        {hotel.rating}
-                      </span>
-                      <span className='fs-7'>{hotel.type}</span>
-                    </div> */}
                   </div>
                 </div>
               )

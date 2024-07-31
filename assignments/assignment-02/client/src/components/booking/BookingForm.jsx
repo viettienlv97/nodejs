@@ -9,7 +9,6 @@ import { HTTP_METHOD, API_URL } from '../../contants.js'
 import { bookedRoomsActions } from '../../store/bookedRooms.js'
 
 const BookingForm = ({ formRef, hotel, roomForm }) => {
-  console.log('re-render booking form')
   const { hotelId } = useParams()
   const { fetchData: getAvailableRooms, data: bookedRooms } = useFetch(
     HTTP_METHOD.POST

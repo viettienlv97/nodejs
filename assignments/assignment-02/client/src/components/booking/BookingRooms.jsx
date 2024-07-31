@@ -26,7 +26,6 @@ const BookingRooms = memo(({ rooms, roomForm }) => {
     const booked = bookedRooms.find((r) => r._id === room._id)?.roomNumbers
     return { ...room, booked }
   })
-  console.log('filterBooked', filterBooked)
 
   return (
     <form ref={roomForm}>

@@ -19,7 +19,6 @@ const useFetch = (method) => {
           return response.json()
         })
         .then((res) => {
-          console.log(res)
           if (!res.success) setError(res.message)
           else {
             // setTimeout(() => {
@@ -29,7 +28,6 @@ const useFetch = (method) => {
           }
         })
     } catch (error) {
-      console.log(error)
     } finally {
       // setTimeout(() => {
       setLoading(false)

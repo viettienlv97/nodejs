@@ -38,8 +38,6 @@ const Booking = ({ hotel, loading }) => {
 
   useEffect(() => {
     if (bookingInfo && submitting) {
-      console.log('submit')
-      console.log(bookingInfo)
       const request = {
         createrId: user?._id ?? null,
         transaction: {

@@ -9,7 +9,11 @@ import { useDispatch } from 'react-redux'
 import { hotelListActions } from '../../store/searchedList.js'
 
 const SearchForm = () => {
+  //hooks
   const dispatch = useDispatch()
+  const { fetchData: searchHotel, data, loading } = useFetch(HTTP_METHOD.POST)
+
+  //state
   const [showDateRange, setShowDateRange] = useState(false)
   const [searchOption, setSearchOption] = useState({
     minPrice: '',
@@ -25,8 +29,7 @@ const SearchForm = () => {
     key: 'selection'
   })
 
-  const { fetchData: searchHotel, data, loading } = useFetch(HTTP_METHOD.POST)
-
+  //useEffect
   useEffect(() => {
     if (data) {
       dispatch(hotelListActions.setAuth(data))
@@ -36,10 +39,10 @@ const SearchForm = () => {
     }
   }, [data, loading])
 
+  //methods
   const handleSearchHotels = (e) => {
     e.preventDefault()
 
-    console.log(destination)
     searchHotel(`${import.meta.env.VITE_API_URL}/hotel/search`, {
       destination,
       searchOption: {
@@ -55,10 +58,7 @@ const SearchForm = () => {
     })
   }
 
-  useEffect(() => {
-    if (data) console.log(data)
-  }, [data])
-
+  //render
   return (
     <form onSubmit={handleSearchHotels}>
       <h1 className='text-dark fw-bold'>Search</h1>

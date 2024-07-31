@@ -2,8 +2,10 @@ import { useEffect } from 'react'
 import { API_URL, HTTP_METHOD } from '../../contants.js'
 import useFetch from '../../hooks/useFetch.js'
 import { CustomTh, CustomTd } from '../UI/Table.jsx'
+import { useNavigate } from 'react-router-dom'
 
 const RoomTable = () => {
+  const navigate = useNavigate()
   const {
     fetchData: getAllRooms,
     data: roomsList,
@@ -27,10 +29,10 @@ const RoomTable = () => {
     }
   }, [deleteResult, errorDelete])
 
+  const handleEditRoom = (roomId) => navigate(`/rooms/${roomId}`)
+
   const handleDeleteRoom = (roomId) => {
-    console.log('delete room ', roomId)
     if (!confirm('Delete this room?')) return
-    console.log('deleted')
     deleteRoom(`${API_URL}/admin/rooms/${roomId}`)
   }
 
@@ -69,10 +71,22 @@ const RoomTable = () => {
                   <CustomTd>{room.price}</CustomTd>
                   <CustomTd>{room.maxPeople}</CustomTd>
                   <CustomTd>
-                    <DeleteButton
-                      roomId={room._id}
-                      handleDeleteRoom={handleDeleteRoom}
-                    />
+                    <div className='d-flex'>
+                      <Button
+                        title={'Edit'}
+                        className={
+                          'bg-warning-subtle border-warning text-warning me-2'
+                        }
+                        roomId={room._id}
+                        handleClick={handleEditRoom}
+                      />
+                      <Button
+                        title={'Delete'}
+                        className={'bg-danger-subtle border-danger text-danger'}
+                        roomId={room._id}
+                        handleClick={handleDeleteRoom}
+                      />
+                    </div>
                   </CustomTd>
                 </tr>
               )
@@ -85,13 +99,13 @@ const RoomTable = () => {
 
 export default RoomTable
 
-const DeleteButton = ({ roomId, handleDeleteRoom }) => {
+const Button = ({ roomId, handleClick, className, title }) => {
   return (
     <button
-      onClick={() => handleDeleteRoom(roomId)}
-      className='btn bg-danger-subtle border border-danger text-danger'
+      onClick={() => handleClick(roomId)}
+      className={`${className} btn border`}
     >
-      Delete
+      {title}
     </button>
   )
 }

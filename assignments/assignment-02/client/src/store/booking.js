@@ -27,7 +27,6 @@ const bookingSlice = createSlice({
       state.dateCount = count
     },
     setHotel: (state, { payload }) => {
-      console.log('set hotel')
       state.hotel = payload
     },
     setHotelRooms: (state, { payload }) => {
@@ -40,7 +39,6 @@ const bookingSlice = createSlice({
         return prev + current.price * current.roomNumbers.length
       }, 0)
       const total = state.dateCount * roomPrice
-      console.log(total)
       state.total = total
     },
     setPayment: (state, { payload }) => {

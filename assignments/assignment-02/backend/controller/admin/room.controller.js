@@ -9,12 +9,25 @@ const getAllRooms = (req, res) => {
     .catch((err) => responseFail(res, 404, err?.message))
 }
 
+const getRoomDetail = (req, res) => {
+  const { roomId } = req.params
+  if (!roomId) return responseFail(res, 400, 'Missing roomId param')
+
+  Room.findById(roomId)
+    .then((room) =>
+      room
+        ? responseSuccess(res, room)
+        : responseFail(res, 404, 'Not found room')
+    )
+    .catch((err) => responseFail(res, 500, err.message))
+}
+
 const postNewRoom = (req, res) => {
-  const { title, description, roomNumbers, price, maxPeople } = req.body
+  const { title, desc, roomNumbers, price, maxPeople } = req.body
 
   const newRoom = new Room({
     title,
-    desc: description,
+    desc,
     roomNumbers,
     price,
     maxPeople,
@@ -24,6 +37,27 @@ const postNewRoom = (req, res) => {
     .save()
     .then((result) => responseSuccess(res, result))
     .catch((err) => responseFail(res, 404, err?.message))
+}
+
+const postUpdateRoom = (req, res) => {
+  const { roomId } = req.params
+  const { title, desc, roomNumbers, price, maxPeople } = req.body
+
+  Room.updateOne(
+    { _id: roomId },
+    {
+      $set: {
+        title,
+        desc,
+        roomNumbers,
+        price,
+        maxPeople,
+        updatedAt: new Date()
+      }
+    }
+  )
+    .then((result) => responseSuccess(res, result))
+    .catch((err) => responseFail(res, 500, err.message))
 }
 
 const deleleRoom = (req, res) => {
@@ -47,4 +81,10 @@ const deleleRoom = (req, res) => {
     .catch((err) => responseFail(res, 404, err?.message))
 }
 
-export default { getAllRooms, postNewRoom, deleleRoom }
+export default {
+  getAllRooms,
+  getRoomDetail,
+  postNewRoom,
+  deleleRoom,
+  postUpdateRoom
+}
