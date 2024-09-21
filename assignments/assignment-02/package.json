@@ -1,0 +1,17 @@
+{
+  "name": "assignment-02",
+  "version": "1.0.0",
+  "description": "Assignment 02 Fullstack",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run dev",
+    "backend": "cd backend && npm run dev",
+    "admin": "cd admin && npm run dev",
+    "dev": "concurrently \"npm run client\" \"npm run backend\" \"npm run admin\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

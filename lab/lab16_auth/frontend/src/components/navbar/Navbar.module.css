@@ -1,0 +1,16 @@
+.navList {
+  background-color: green;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 1rem 0;
+}
+
+.navItem {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+.active {
+  color: goldenrod;
+}
